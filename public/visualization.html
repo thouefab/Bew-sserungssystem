@@ -68,10 +68,10 @@
                     <h2 class="mt-5">Feuchtigkeits-Wert (Aktueller Wert)</h2>
                         <!-- Aktueller Feuchtigkeitswert als Progressbar -->
                         <div class="progress">
-                        <div id="feuchtigkeitlevel-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                        <div id="feuchtigkeit-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
                     </div>
                         <!-- Aktueller Feuchtigkeitswert als Text -->
-                         <p id="feuchtigkeitlevel-text">Warte auf erste Messung...</p>
+                         <p id="feuchtigkeit-text">Warte auf erste Messung...</p>
                 </td>
             </tr>
         </table>      
@@ -106,14 +106,18 @@
             <tr>
                 <td>
                     <!-- Verlauf Lux Level als Chart -->
-                    <h2 class="mt-5">Lux-Wert (Verlauf)</h2>
-                    <div id="luxlevel-chart" style="max-width:100%; height:400px"></div>
+                    <div class = charset>    
+                        <h2 class="mt-5">Lux-Wert (Verlauf)</h2>
+                        <div id="lux-chart" style="max-width:100%; height:400px"></div>
+                </div>
                 </td>
                 <td></td> <!-- Dies ist ein Platzhalter-->
                 <td>
                     <!-- Verlauf Feuchte Level als Chart -->
-                    <h2 class="mt-5">Feuchtigkeits-Wert (Verlauf)</h2>
-                    <div id="luxlevel-chart1" style="max-width:100%; height:400px"></div>
+                    <div class = charset1> 
+                        <h2 class="mt-5">Feuchtigkeits-Wert (Verlauf)</h2>
+                        <div id="feuchtigkeit-chart" style="max-width:100%; height:400px"></div>
+                    </div>
                 </td>
             </tr>
         </table> 
@@ -134,7 +138,7 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- Eigenes JavaScript -->
-    <script src="visualization.js"></script>
+    <script src="visualizationtwo.js"></script>
 
     
 
