@@ -5,6 +5,7 @@ exports.sendEvent = null;
 exports.registerEventHandlers = function (source) {
     source.addEventListener('Lux', forwardEvent);
     source.addEventListener('Feuchtigkeit', forwardEvent);
+    source.addEventListener('Bewässerung', forwardEvent);
     // Register more event handlers here
 }
 

@@ -18,12 +18,14 @@ initSSE();
 // Array, in dem alle empfangenen Lux-Werte gespeichert werden.
 var LuxMeasurements = [];
 var FeuchtigkeitMeasurements = [];
+var BewässerungMeasurements = [];
 
 
 // Maximaler Lux Level für die Berechnung des Prozentwerts und als maximaler Wert für das Chart.
 // -- TODO Aufgabe 1 -- 
 // Maximalwert anpassen
 var maxLevel = 100;
+var bewässerungLevel = 1;
 
 // Diese Funktion wird immer dann ausgeführt, wenn ein neues Event empfangen wird.
 function updateVariables(data) {
@@ -95,10 +97,12 @@ function updateVariables(data) {
         // Liste aller unterstützten Farben: https://www.w3schools.com/cssref/css_colors.asp
         // -- TODO Aufgabe 2 -- 
         // Weitere Farben abhängig vom Level
-        if (level <= 30) {
-            color = "Green";
+        if (level <= 40) {
+            color = "Brown";
+        } else if (level <= 60) {
+            color = "Orange";
         } else {
-           color = "Orange";
+           color = "Green";
         }
 
         // CSS Style für die Hintergrundfarbe des Balkens
@@ -128,6 +132,59 @@ function updateVariables(data) {
 
         // Wert im Chart hinzufügen
         addData1(feuchtigkeit);
+    }
+    //Bewässerungslevelbar
+
+    if (data.eventName === "Bewässerung") {
+        // Erhaltenen Wert in der Variable 'lux' speichern
+        var bewässerung = Number(data.eventData);
+     //console.log(lux);
+
+        // Wert am Ende des Arrays 'allMeasurements' hinzufügen
+        BewässerungMeasurements.push(bewässerung);
+
+        // Wert in Prozent umrechnen und in 'level' speichern
+        var level = bewässerung * (100 / bewässerungLevel);
+
+        // Farbe des Balkens abhängig von Level festlegen
+        // Liste aller unterstützten Farben: https://www.w3schools.com/cssref/css_colors.asp
+        // -- TODO Aufgabe 2 -- 
+        // Weitere Farben abhängig vom Level
+        if (level <= 100) {
+            color = "Blue";
+            document.getElementById("bewässerung-text").innerHTML = "Bewässerung erfolgt ";
+        } else {
+           color = "Red";
+           document.getElementById("bewässerung-text").innerHTML = "Bewässerung erfolgt nicht";
+        }
+
+        // CSS Style für die Hintergrundfarbe des Balkens
+        var colorStyle = "background-color: " + color + " !important;";
+
+        // CSS Style für die Breite des Balkens in Prozent
+        var widthStyle = "width: " + level + "%;"
+
+        // Oben definierte Styles für Hintergrundfarbe und Breite des Balkens verwenden, um
+        // den Progressbar im HTML-Dokument zu aktualisieren
+        document.getElementById("bewässerung-bar").style = colorStyle + widthStyle;
+
+        // Text unterhalb des Balkens aktualisieren
+        
+
+        // Durchschnitt aller bisherigen Messungen berechnen und in 'luxAverage' speichern
+        var bewässerungSum = 0;
+        for (var measurement of BewässerungMeasurements) {
+            bewässerungSum = bewässerungSum + measurement;
+        }
+        var bewässerungAverage = bewässerungtSum / BewässerungMeasurements.length;
+        //console.log(luxAverage);
+
+        // -- TODO Aufgabe 3 -- 
+        // Durchschnittlichen Lux-Wert (luxAverage) in Prozent umrechnen und als Balken und Text anzeigen
+    
+
+        // Wert im Chart hinzufügen
+        addData2(bewässerung);
     }
 }
 
