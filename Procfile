@@ -1,2 +1,2 @@
 web: node server.js
-webpack-dev-server
+web: webpack-dev-server
