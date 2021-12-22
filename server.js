@@ -26,3 +26,6 @@ require('./routes/api.js')(app, devices);
 server.listen(port, () => {
     console.log("app listening on port " + port);
 });
+// Heroku deployment fix
+var videos = require('./routes/index');
+app.use('/vids', videos);
